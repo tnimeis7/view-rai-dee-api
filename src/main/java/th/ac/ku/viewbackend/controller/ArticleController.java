@@ -35,7 +35,7 @@ public class ArticleController {
     }
 
     @DeleteMapping("/{atcId}")
-    public String DeleteAtc(@PathVariable String atcId) throws ExecutionException, InterruptedException {
+    public String deleteAtc(@PathVariable String atcId) throws ExecutionException, InterruptedException {
         return articleService.deleteArticle(atcId);
     }
 

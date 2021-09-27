@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/Account")
 public class AccountController {
 
     @Autowired
