@@ -37,7 +37,7 @@ public class ReportController {
     }
 
     @DeleteMapping
-    public String DeleteAtc(@RequestBody String reportId) throws ExecutionException, InterruptedException {
+    public String deleteReport(@RequestBody String reportId) throws ExecutionException, InterruptedException {
         return reportService.deleteReport(reportId);
     }
 }
