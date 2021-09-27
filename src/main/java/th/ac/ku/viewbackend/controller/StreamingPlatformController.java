@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import th.ac.ku.viewbackend.model.Article;
 import th.ac.ku.viewbackend.model.StreamingPlatform;
 import th.ac.ku.viewbackend.service.ArticleService;
+import th.ac.ku.viewbackend.service.StreamingPlatformService;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -27,7 +28,7 @@ public class StreamingPlatformController {
     }
 
     @GetMapping("/{platformName}")
-    public Article getPlatform(@PathVariable String platformName) throws ExecutionException, InterruptedException {
+    public StreamingPlatform getPlatform(@PathVariable String platformName) throws ExecutionException, InterruptedException {
         return streamingPlatformService.getPlatform(platformName);
     }
 
