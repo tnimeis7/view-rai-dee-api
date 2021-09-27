@@ -26,7 +26,7 @@ public class TagController {
     }
 
     @GetMapping("{nameTag}")
-    public Tag getTag(@RequestBody String nameTag) throws ExecutionException, InterruptedException {
+    public Tag getTag(@PathVariable String nameTag) throws ExecutionException, InterruptedException {
         return tagService.getTag(nameTag);
     }
 
@@ -36,7 +36,7 @@ public class TagController {
     }
 
     @DeleteMapping
-    public String deleteTag(@RequestBody String nameTag) throws ExecutionException, InterruptedException {
+    public String deleteTag(@PathVariable String nameTag) throws ExecutionException, InterruptedException {
         return tagService.deleteArticle(nameTag);
     }
 }
