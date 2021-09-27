@@ -1,6 +1,5 @@
 package th.ac.ku.viewbackend.model;
 
-
 import com.google.cloud.Timestamp;
 
 public class Article {

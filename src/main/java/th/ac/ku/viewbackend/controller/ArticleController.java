@@ -24,18 +24,18 @@ public class ArticleController {
         return articleService.getAllArticle();
     }
 
-    @GetMapping("{atcId}")
-    public Article getAtc(@RequestBody String atcId) throws ExecutionException, InterruptedException {
+    @GetMapping("/{atcId}")
+    public Article getAtc(@PathVariable String atcId) throws ExecutionException, InterruptedException {
         return articleService.getArticle(atcId);
     }
 
-    @PutMapping
+    @PutMapping("/{atcId}")
     public String updateAtc(@RequestBody Article atc) throws ExecutionException, InterruptedException {
         return articleService.updateArticle(atc);
     }
 
-    @DeleteMapping
-    public String DeleteAtc(@RequestBody String atcId) throws ExecutionException, InterruptedException {
+    @DeleteMapping("/{atcId}")
+    public String DeleteAtc(@PathVariable String atcId) throws ExecutionException, InterruptedException {
         return articleService.deleteArticle(atcId);
     }
 
