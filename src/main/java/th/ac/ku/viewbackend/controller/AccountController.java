@@ -36,7 +36,7 @@ public class AccountController {
     }
 
     @DeleteMapping("/{username}")
-    public String DeleteAcc(@PathVariable String username) throws ExecutionException, InterruptedException {
+    public String deleteAcc(@PathVariable String username) throws ExecutionException, InterruptedException {
         return accountService.deleteAcc(username);
     }
 }
