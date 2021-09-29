@@ -48,7 +48,7 @@ public class TagService {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         Iterable<DocumentReference> documentReferences = dbFirestore.collection(COLLECTION_NAME).listDocuments();
         Iterator<DocumentReference> iterator = documentReferences.iterator();
-        List<Tag> articleList = new ArrayList<>();
+        List<Tag> tagList = new ArrayList<>();
         Tag tagTag = null;
 
         while(iterator.hasNext()){
@@ -56,13 +56,13 @@ public class TagService {
             ApiFuture<DocumentSnapshot> future = documentReference.get();
             DocumentSnapshot documentSnapshot = future.get();
             tagTag = documentSnapshot.toObject(Tag.class);
-            articleList.add(tagTag);
+            tagList.add(tagTag);
         }
-        return articleList;
+        return tagList;
     }
 
 
-    public String deleteArticle(String tagDocId) throws ExecutionException, InterruptedException{
+    public String deleteTag(String tagDocId) throws ExecutionException, InterruptedException{
 
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(COLLECTION_NAME).document(tagDocId).delete();
