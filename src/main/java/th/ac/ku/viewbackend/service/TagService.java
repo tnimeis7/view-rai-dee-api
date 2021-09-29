@@ -22,7 +22,7 @@ public class TagService {
     public String saveTag(Tag tags) throws ExecutionException, InterruptedException{
 
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(COLLECTION_NAME).document(tags.getNameTag()).set(tags);
+        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(COLLECTION_NAME).document(tags.getNameTag()+"_"+tags.getAtcId()).set(tags);
         return collectionApiFuture.get().getUpdateTime().toString();
     }
 
@@ -61,17 +61,11 @@ public class TagService {
         return articleList;
     }
 
-    public String updateTag(Tag tags) throws ExecutionException, InterruptedException{
-
-        Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(COLLECTION_NAME).document(tags.getNameTag()).set(tags);
-        return collectionApiFuture.get().getUpdateTime().toString();
-    }
 
     public String deleteArticle(String nameTag) throws ExecutionException, InterruptedException{
 
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(COLLECTION_NAME).document(nameTag).delete();
-        return "delete" + nameTag + "successfully";
+        return "delete " + nameTag + " successfully";
     }
 }
