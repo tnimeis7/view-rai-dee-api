@@ -27,17 +27,17 @@ public class ReportController {
     }
 
     @GetMapping("{reportId}")
-    public Report getReport(@RequestBody String reportId) throws ExecutionException, InterruptedException {
+    public Report getReport(@PathVariable String reportId) throws ExecutionException, InterruptedException {
         return reportService.getReport(reportId);
     }
 
-    @PutMapping
+    @PutMapping("{reportId}")
     public String updateReport(@RequestBody Report report) throws ExecutionException, InterruptedException {
         return reportService.updateReport(report);
     }
 
-    @DeleteMapping
-    public String deleteReport(@RequestBody String reportId) throws ExecutionException, InterruptedException {
+    @DeleteMapping("{reportId}")
+    public String deleteReport(@PathVariable String reportId) throws ExecutionException, InterruptedException {
         return reportService.deleteReport(reportId);
     }
 }
