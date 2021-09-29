@@ -12,6 +12,7 @@ import java.util.concurrent.ExecutionException;
 @RestController
 @RequestMapping("/Tag")
 public class TagController {
+
     @Autowired
     private TagService tagService;
 
@@ -25,18 +26,13 @@ public class TagController {
         return tagService.getAllTag();
     }
 
-    @GetMapping("{nameTag}")
-    public Tag getTag(@PathVariable String nameTag) throws ExecutionException, InterruptedException {
-        return tagService.getTag(nameTag);
+    @GetMapping("{TagID}")
+    public Tag getTag(@PathVariable String TagID) throws ExecutionException, InterruptedException {
+        return tagService.getTag(TagID);
     }
 
-    @PutMapping
-    public String updateTag(@RequestBody Tag tags) throws ExecutionException, InterruptedException {
-        return tagService.updateTag(tags);
-    }
-
-    @DeleteMapping
-    public String deleteTag(@PathVariable String nameTag) throws ExecutionException, InterruptedException {
-        return tagService.deleteArticle(nameTag);
+    @DeleteMapping("{TagID}")
+    public String deleteTag(@PathVariable String TagID) throws ExecutionException, InterruptedException {
+        return tagService.deleteArticle(TagID);
     }
 }
