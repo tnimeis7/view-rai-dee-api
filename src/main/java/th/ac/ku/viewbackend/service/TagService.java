@@ -26,10 +26,10 @@ public class TagService {
         return collectionApiFuture.get().getUpdateTime().toString();
     }
 
-    public Tag getTag(String nameTag) throws ExecutionException, InterruptedException{
+    public Tag getTag(String tagDocId) throws ExecutionException, InterruptedException{
 
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        DocumentReference documentReferences = dbFirestore.collection(COLLECTION_NAME).document(nameTag);
+        DocumentReference documentReferences = dbFirestore.collection(COLLECTION_NAME).document(tagDocId);
         ApiFuture<DocumentSnapshot> future = documentReferences.get();
         DocumentSnapshot documentSnapshot = future.get();
         Tag tagTag = null;
@@ -62,10 +62,10 @@ public class TagService {
     }
 
 
-    public String deleteArticle(String nameTag) throws ExecutionException, InterruptedException{
+    public String deleteArticle(String tagDocId) throws ExecutionException, InterruptedException{
 
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(COLLECTION_NAME).document(nameTag).delete();
-        return "delete " + nameTag + " successfully";
+        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(COLLECTION_NAME).document(tagDocId).delete();
+        return "delete " + tagDocId + " successfully";
     }
 }

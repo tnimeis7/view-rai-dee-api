@@ -22,7 +22,7 @@ public class TagController {
     }
 
     @GetMapping
-    public List<Tag> getAllAtc() throws ExecutionException, InterruptedException {
+    public List<Tag> getAllTag() throws ExecutionException, InterruptedException {
         return tagService.getAllTag();
     }
 
