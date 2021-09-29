@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @RestController
-@RequestMapping("/stream")
+@RequestMapping("/Stream")
 public class StreamingPlatformController {
 
     @Autowired
