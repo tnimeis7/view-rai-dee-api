@@ -3,9 +3,7 @@ package th.ac.ku.viewbackend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import th.ac.ku.viewbackend.model.Article;
 import th.ac.ku.viewbackend.model.Comment;
-import th.ac.ku.viewbackend.service.ArticleService;
 import th.ac.ku.viewbackend.service.CommentService;
 
 import java.util.List;
@@ -28,17 +26,17 @@ public class CommentController {
     }
 
     @GetMapping("{commentID}")
-    public Comment getComment(@RequestBody String commentID) throws ExecutionException, InterruptedException {
+    public Comment getComment(@PathVariable String commentID) throws ExecutionException, InterruptedException {
         return commentService.getComment(commentID);
     }
 
-    @PutMapping
+    @PutMapping("{commentID}")
     public String updateComment(@RequestBody Comment comment) throws ExecutionException, InterruptedException {
         return commentService.updateComment(comment);
     }
 
-    @DeleteMapping
-    public String DeleteComment(@RequestBody String commentID) throws ExecutionException, InterruptedException {
+    @DeleteMapping("{commentID}")
+    public String deleteComment(@PathVariable String commentID) throws ExecutionException, InterruptedException {
         return commentService.deleteComment(commentID);
     }
 
