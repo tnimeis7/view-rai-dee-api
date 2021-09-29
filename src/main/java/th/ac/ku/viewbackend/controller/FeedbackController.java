@@ -27,17 +27,17 @@ public class FeedbackController {
     }
 
     @GetMapping("{fbId}")
-    public Feedback getFb(@RequestBody String fbId) throws ExecutionException, InterruptedException {
+    public Feedback getFb(@PathVariable String fbId) throws ExecutionException, InterruptedException {
         return feedbackService.getFeedback(fbId);
     }
 
-    @PutMapping
+    @PutMapping("{fbId}")
     public String updateFb(@RequestBody Feedback fb) throws ExecutionException, InterruptedException {
         return feedbackService.updateFeedback(fb);
     }
 
-    @DeleteMapping
-    public String DeleteFb(@RequestBody String fbId) throws ExecutionException, InterruptedException {
+    @DeleteMapping("{fbId}")
+    public String DeleteFb(@PathVariable String fbId) throws ExecutionException, InterruptedException {
         return feedbackService.deleteFeedback(fbId);
     }
 }
