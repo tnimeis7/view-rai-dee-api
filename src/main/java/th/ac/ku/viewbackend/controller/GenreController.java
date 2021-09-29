@@ -25,12 +25,12 @@ public class GenreController {
         return genreService.getAllGenre();
     }
 
-    @GetMapping("{GenreId}")
+    @GetMapping("{genreId}")
     public Genre getGenre(@PathVariable String genreId) throws ExecutionException, InterruptedException {
         return genreService.getGenre(genreId);
     }
 
-    @DeleteMapping("{GenreId}")
+    @DeleteMapping("{genreId}")
     public String deleteGenre(@PathVariable String genreId) throws ExecutionException, InterruptedException {
         return genreService.deleteGenre(genreId);
     }
