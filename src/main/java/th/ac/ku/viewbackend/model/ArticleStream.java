@@ -1,6 +1,6 @@
 package th.ac.ku.viewbackend.model;
 
-public class ArticleStream {
+public class ArticleStream implements BlockComponents{
     private String atcId;
     private String platform;
 
@@ -18,5 +18,10 @@ public class ArticleStream {
 
     public void setPlatform(String platform) {
         this.platform = platform;
+    }
+
+    @Override
+    public String getId() {
+        return getAtcId()+"_"+getPlatform();
     }
 }

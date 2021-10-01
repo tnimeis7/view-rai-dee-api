@@ -1,6 +1,6 @@
 package th.ac.ku.viewbackend.model;
 
-public class Genre {
+public class Genre implements BlockComponents{
     private String genreName;
     private String atcId;
 
@@ -18,5 +18,10 @@ public class Genre {
 
     public void setAtcId(String atcId) {
         this.atcId = atcId;
+    }
+
+    @Override
+    public String getId() {
+        return getGenreName()+"_"+getAtcId();
     }
 }

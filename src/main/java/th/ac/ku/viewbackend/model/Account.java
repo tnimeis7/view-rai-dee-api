@@ -1,6 +1,6 @@
 package th.ac.ku.viewbackend.model;
 
-public class Account {
+public class Account implements BlockComponents{
 
     private String username;
     private String password;
@@ -82,5 +82,10 @@ public class Account {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String getId() {
+        return getUsername();
     }
 }

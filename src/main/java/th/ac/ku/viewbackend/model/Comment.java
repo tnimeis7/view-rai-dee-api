@@ -2,26 +2,26 @@ package th.ac.ku.viewbackend.model;
 
 import com.google.cloud.Timestamp;
 
-public class Comment {
-    private String commentID;
-    private String articleID;
+public class Comment implements BlockComponents{
+    private String commentId;
+    private String articleId;
     private String commentContent;
     private Timestamp commentDate;
 
-    public String getCommentID() {
-        return commentID;
+    public String getCommentId() {
+        return commentId;
     }
 
-    public void setCommentID(String commentID) {
-        this.commentID = commentID;
+    public void setCommentId(String commentId) {
+        this.commentId = commentId;
     }
 
-    public String getArticleID() {
-        return articleID;
+    public String getArticleId() {
+        return articleId;
     }
 
-    public void setArticleID(String articleID) {
-        this.articleID = articleID;
+    public void setArticleId(String articleId) {
+        this.articleId = articleId;
     }
 
     public String getCommentContent() {
@@ -38,5 +38,10 @@ public class Comment {
 
     public void setCommentDate(Timestamp commentDate) {
         this.commentDate = commentDate;
+    }
+
+    @Override
+    public String getId() {
+        return getCommentId();
     }
 }

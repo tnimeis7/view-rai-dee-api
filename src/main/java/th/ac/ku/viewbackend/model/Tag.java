@@ -1,6 +1,6 @@
 package th.ac.ku.viewbackend.model;
 
-public class Tag {
+public class Tag implements BlockComponents{
     private String nameTag;
     private String atcId;
 
@@ -18,5 +18,10 @@ public class Tag {
 
     public void setAtcId(String atcId) {
         this.atcId = atcId;
+    }
+
+    @Override
+    public String getId() {
+        return getNameTag()+"_"+getAtcId();
     }
 }

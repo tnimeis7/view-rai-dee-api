@@ -1,6 +1,6 @@
 package th.ac.ku.viewbackend.model;
 
-public class Feedback {
+public class Feedback implements BlockComponents {
 
     private String fbId;
     private String fbContent;
@@ -37,5 +37,10 @@ public class Feedback {
 
     public void setFbStatus(String fbStatus) {
         this.fbStatus = fbStatus;
+    }
+
+    @Override
+    public String getId() {
+        return getFbId();
     }
 }

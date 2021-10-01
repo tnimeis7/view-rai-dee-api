@@ -1,6 +1,6 @@
 package th.ac.ku.viewbackend.model;
 
-public class StreamingPlatform {
+public class StreamingPlatform implements BlockComponents {
 
     private String platformName;
     private String picPath;
@@ -19,5 +19,10 @@ public class StreamingPlatform {
 
     public void setPicPath(String picPath) {
         this.picPath = picPath;
+    }
+
+    @Override
+    public String getId() {
+        return getPlatformName();
     }
 }

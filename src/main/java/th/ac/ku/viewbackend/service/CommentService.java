@@ -22,7 +22,7 @@ public class CommentService {
     public String saveComment(Comment comment) throws ExecutionException, InterruptedException{
 
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(COLLECTION_NAME).document(comment.getCommentID()).set(comment);
+        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(COLLECTION_NAME).document(comment.getCommentId()).set(comment);
         return collectionApiFuture.get().getUpdateTime().toString();
     }
 
@@ -64,7 +64,7 @@ public class CommentService {
     public String updateComment(Comment comment) throws ExecutionException, InterruptedException{
 
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(COLLECTION_NAME).document(comment.getCommentID()).set(comment);
+        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(COLLECTION_NAME).document(comment.getCommentId()).set(comment);
         return collectionApiFuture.get().getUpdateTime().toString();
     }
 

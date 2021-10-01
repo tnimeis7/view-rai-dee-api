@@ -2,7 +2,7 @@ package th.ac.ku.viewbackend.model;
 
 import com.google.cloud.Timestamp;
 
-public class Report {
+public class Report implements BlockComponents{
     private String reportId;
     private String reportContent;
     private String atcId;
@@ -56,5 +56,10 @@ public class Report {
 
     public void setReportDate(Timestamp reportDate) {
         this.reportDate = reportDate;
+    }
+
+    @Override
+    public String getId() {
+        return getReportId();
     }
 }
