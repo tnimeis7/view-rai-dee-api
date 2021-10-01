@@ -7,6 +7,7 @@ import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.WriteResult;
 import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.stereotype.Service;
+import th.ac.ku.viewbackend.model.Genre;
 import th.ac.ku.viewbackend.model.Tag;
 
 import java.util.ArrayList;
@@ -15,57 +16,58 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @Service
-public class TagService {
+public class GenreService {
 
-    private static final String COLLECTION_NAME = "Tag";
+    private static final String COLLECTION_NAME = "Genre";
 
-    public String saveTag(Tag tags) throws ExecutionException, InterruptedException{
+    public String saveGenre(Genre genre) throws ExecutionException, InterruptedException{
 
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(COLLECTION_NAME).document(tags.getNameTag()+"_"+tags.getAtcId()).set(tags);
+        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(COLLECTION_NAME).document(genre.getGenreName()+"_"+genre.getAtcId()).set(genre);
         return collectionApiFuture.get().getUpdateTime().toString();
     }
 
-    public Tag getTag(String tagDocId) throws ExecutionException, InterruptedException{
+    public Genre getGenre(String genreDocId) throws ExecutionException, InterruptedException{
 
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        DocumentReference documentReferences = dbFirestore.collection(COLLECTION_NAME).document(tagDocId);
+        DocumentReference documentReferences = dbFirestore.collection(COLLECTION_NAME).document(genreDocId);
         ApiFuture<DocumentSnapshot> future = documentReferences.get();
         DocumentSnapshot documentSnapshot = future.get();
-        Tag tagTag = null;
+        Genre gen = null;
 
         if(documentSnapshot.exists()){
-            tagTag = documentSnapshot.toObject(Tag.class);
-            return tagTag;
+            gen= documentSnapshot.toObject(Genre.class);
+            return gen;
         }
         else{
             return null;
         }
     }
 
-    public List<Tag> getAllTag() throws ExecutionException, InterruptedException{
+    public List<Genre> getAllGenre() throws ExecutionException, InterruptedException{
 
         Firestore dbFirestore = FirestoreClient.getFirestore();
         Iterable<DocumentReference> documentReferences = dbFirestore.collection(COLLECTION_NAME).listDocuments();
         Iterator<DocumentReference> iterator = documentReferences.iterator();
-        List<Tag> tagList = new ArrayList<>();
-        Tag tagTag = null;
+        List<Genre> genreList = new ArrayList<>();
+        Genre gen = null;
 
         while(iterator.hasNext()){
             DocumentReference documentReference = iterator.next();
             ApiFuture<DocumentSnapshot> future = documentReference.get();
             DocumentSnapshot documentSnapshot = future.get();
-            tagTag = documentSnapshot.toObject(Tag.class);
-            tagList.add(tagTag);
+            gen = documentSnapshot.toObject(Genre.class);
+            genreList.add(gen);
         }
-        return tagList;
+        return genreList;
     }
 
 
-    public String deleteTag(String tagDocId) throws ExecutionException, InterruptedException{
+    public String deleteGenre(String genreDocId) throws ExecutionException, InterruptedException{
 
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(COLLECTION_NAME).document(tagDocId).delete();
-        return "delete " + tagDocId + " successfully";
+        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(COLLECTION_NAME).document(genreDocId).delete();
+        return "delete " + genreDocId + " successfully";
     }
+
 }

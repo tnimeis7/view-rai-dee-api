@@ -26,13 +26,13 @@ public class TagController {
         return tagService.getAllTag();
     }
 
-    @GetMapping("{TagID}")
-    public Tag getTag(@PathVariable String TagID) throws ExecutionException, InterruptedException {
-        return tagService.getTag(TagID);
+    @GetMapping("{tagID}")
+    public Tag getTag(@PathVariable String tagID) throws ExecutionException, InterruptedException {
+        return tagService.getTag(tagID);
     }
 
-    @DeleteMapping("{TagID}")
-    public String deleteTag(@PathVariable String TagID) throws ExecutionException, InterruptedException {
-        return tagService.deleteArticle(TagID);
+    @DeleteMapping("{tagID}")
+    public String deleteTag(@PathVariable String tagID) throws ExecutionException, InterruptedException {
+        return tagService.deleteTag(tagID);
     }
 }
