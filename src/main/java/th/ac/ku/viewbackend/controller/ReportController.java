@@ -2,10 +2,9 @@ package th.ac.ku.viewbackend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import th.ac.ku.viewbackend.model.Article;
+import th.ac.ku.viewbackend.model.Account;
 import th.ac.ku.viewbackend.model.Report;
-import th.ac.ku.viewbackend.service.ArticleService;
-import th.ac.ku.viewbackend.service.ReportService;
+import th.ac.ku.viewbackend.service.BlockService;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -13,31 +12,27 @@ import java.util.concurrent.ExecutionException;
 @RestController
 @RequestMapping("/Report")
 public class ReportController {
+
     @Autowired
-    private ReportService reportService;
+    private BlockService service;
 
     @PostMapping
     public String saveReport(@RequestBody Report report) throws ExecutionException, InterruptedException {
-        return reportService.saveReport(report);
+        return service.save(report, "Report");
     }
 
     @GetMapping
-    public List<Report> getAllReport() throws ExecutionException, InterruptedException {
-        return reportService.getAllReport();
+    public List<Class> getAllReport() throws ExecutionException, InterruptedException {
+        return service.getAll(Report.class, "Report");
     }
 
-    @GetMapping("{reportId}")
-    public Report getReport(@PathVariable String reportId) throws ExecutionException, InterruptedException {
-        return reportService.getReport(reportId);
+    @GetMapping("/{reportId}")
+    public Class getReport(@PathVariable String reportId) throws ExecutionException, InterruptedException {
+        return service.getById(reportId, Report.class, "Report");
     }
 
-    @PutMapping("{reportId}")
-    public String updateReport(@RequestBody Report report) throws ExecutionException, InterruptedException {
-        return reportService.updateReport(report);
-    }
-
-    @DeleteMapping("{reportId}")
+    @DeleteMapping("/{reportId}")
     public String deleteReport(@PathVariable String reportId) throws ExecutionException, InterruptedException {
-        return reportService.deleteReport(reportId);
+        return service.delete(reportId, "Report");
     }
 }

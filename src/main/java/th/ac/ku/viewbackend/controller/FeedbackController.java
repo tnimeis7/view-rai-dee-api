@@ -2,10 +2,10 @@ package th.ac.ku.viewbackend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import th.ac.ku.viewbackend.model.Article;
+import th.ac.ku.viewbackend.model.Account;
+import th.ac.ku.viewbackend.model.Comment;
 import th.ac.ku.viewbackend.model.Feedback;
-import th.ac.ku.viewbackend.service.ArticleService;
-import th.ac.ku.viewbackend.service.FeedbackService;
+import th.ac.ku.viewbackend.service.BlockService;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -13,31 +13,32 @@ import java.util.concurrent.ExecutionException;
 @RestController
 @RequestMapping("/Feedback")
 public class FeedbackController {
+
     @Autowired
-    private FeedbackService feedbackService;
+    private BlockService service;
 
     @PostMapping
-    public String saveFb(@RequestBody Feedback fb) throws ExecutionException, InterruptedException {
-        return feedbackService.saveFeedback(fb);
+    public String saveFeedback(@RequestBody Feedback feedback) throws ExecutionException, InterruptedException {
+        return service.save(feedback, "Feedback");
     }
 
     @GetMapping
-    public List<Feedback> getAllFb() throws ExecutionException, InterruptedException {
-        return feedbackService.getAllFeedback();
+    public List<Class> getAllFeedback() throws ExecutionException, InterruptedException {
+        return service.getAll(Feedback.class, "Feedback");
     }
 
-    @GetMapping("{fbId}")
-    public Feedback getFb(@PathVariable String fbId) throws ExecutionException, InterruptedException {
-        return feedbackService.getFeedback(fbId);
+    @GetMapping("/{fbId}")
+    public Class getFeedback(@PathVariable String fbId) throws ExecutionException, InterruptedException {
+        return service.getById(fbId, Feedback.class, "Feedback");
     }
 
-    @PutMapping("{fbId}")
-    public String updateFb(@RequestBody Feedback fb) throws ExecutionException, InterruptedException {
-        return feedbackService.updateFeedback(fb);
+    @PutMapping("/{fbId}")
+    public String updateFeedback(@RequestBody Feedback feedback) throws ExecutionException, InterruptedException {
+        return service.update(feedback, "Feedback");
     }
 
-    @DeleteMapping("{fbId}")
-    public String DeleteFb(@PathVariable String fbId) throws ExecutionException, InterruptedException {
-        return feedbackService.deleteFeedback(fbId);
+    @DeleteMapping("/{fbId}")
+    public String deleteFeedback(@PathVariable String fbId) throws ExecutionException, InterruptedException {
+        return service.delete(fbId, "Feedback");
     }
 }

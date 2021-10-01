@@ -2,8 +2,9 @@ package th.ac.ku.viewbackend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import th.ac.ku.viewbackend.model.Feedback;
 import th.ac.ku.viewbackend.model.Genre;
-import th.ac.ku.viewbackend.service.GenreService;
+import th.ac.ku.viewbackend.service.BlockService;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -13,26 +14,26 @@ import java.util.concurrent.ExecutionException;
 public class GenreController {
 
     @Autowired
-    private GenreService genreService;
+    private BlockService service;
 
     @PostMapping
     public String saveGenre(@RequestBody Genre genre) throws ExecutionException, InterruptedException {
-        return genreService.saveGenre(genre);
+        return service.save(genre, "Genre");
     }
 
     @GetMapping
-    public List<Genre> getAllGenre() throws ExecutionException, InterruptedException {
-        return genreService.getAllGenre();
+    public List<Class> getAllGenre() throws ExecutionException, InterruptedException {
+        return service.getAll(Genre.class, "Genre");
     }
 
-    @GetMapping("{genreId}")
-    public Genre getGenre(@PathVariable String genreId) throws ExecutionException, InterruptedException {
-        return genreService.getGenre(genreId);
+    @GetMapping("/{genreId}")
+    public Class getGenre(@PathVariable String genreId) throws ExecutionException, InterruptedException {
+        return service.getById(genreId, Genre.class, "Genre");
     }
 
-    @DeleteMapping("{genreId}")
+    @DeleteMapping("/{genreId}")
     public String deleteGenre(@PathVariable String genreId) throws ExecutionException, InterruptedException {
-        return genreService.deleteGenre(genreId);
+        return service.delete(genreId, "Genre");
     }
 
 }

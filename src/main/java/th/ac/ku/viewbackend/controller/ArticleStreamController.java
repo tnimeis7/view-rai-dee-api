@@ -3,7 +3,7 @@ package th.ac.ku.viewbackend.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import th.ac.ku.viewbackend.model.ArticleStream;
-import th.ac.ku.viewbackend.service.ArticleStreamService;
+import th.ac.ku.viewbackend.service.BlockService;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -13,26 +13,26 @@ import java.util.concurrent.ExecutionException;
 public class ArticleStreamController {
 
     @Autowired
-    private ArticleStreamService articleStreamService;
+    private BlockService service;
 
     @PostMapping
-    public String saveAtc(@RequestBody ArticleStream articleStream) throws ExecutionException, InterruptedException {
-        return articleStreamService.saveAtcStream(articleStream);
+    public String saveArticleStream(@RequestBody ArticleStream articleStream) throws ExecutionException, InterruptedException {
+        return service.save(articleStream, "ArticleStream");
     }
 
     @GetMapping
-    public List<ArticleStream> getAllAtc() throws ExecutionException, InterruptedException {
-        return articleStreamService.getAllAtcStream();
+    public List<Class> getAllArticleStream() throws ExecutionException, InterruptedException {
+        return service.getAll(ArticleStream.class, "ArticleStream");
     }
 
     @GetMapping("/{atcStreamId}")
-    public ArticleStream getAtc(@PathVariable String atcStreamId) throws ExecutionException, InterruptedException {
-        return articleStreamService.getAtcStream(atcStreamId);
+    public Class getArticleStream(@PathVariable String atcStreamId) throws ExecutionException, InterruptedException {
+        return service.getById(atcStreamId, ArticleStream.class, "ArticleStream");
     }
 
     @DeleteMapping("/{atcStreamId}")
-    public String deleteAtc(@PathVariable String atcStreamId) throws ExecutionException, InterruptedException {
-        return articleStreamService.deleteAtcStream(atcStreamId);
+    public String deleteArticleStream(@PathVariable String atcStreamId) throws ExecutionException, InterruptedException {
+        return service.delete(atcStreamId, "ArticleStream");
     }
 
 }
