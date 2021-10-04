@@ -4,6 +4,7 @@ package th.ac.ku.viewbackend.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import th.ac.ku.viewbackend.model.Account;
+import th.ac.ku.viewbackend.model.BlockComponents;
 import th.ac.ku.viewbackend.model.Comment;
 import th.ac.ku.viewbackend.service.BlockService;
 
@@ -23,12 +24,12 @@ public class CommentController {
     }
 
     @GetMapping
-    public List<Class> getAllComment() throws ExecutionException, InterruptedException {
+    public List<BlockComponents> getAllComment() throws ExecutionException, InterruptedException {
         return service.getAll(Comment.class, "Comment");
     }
 
     @GetMapping("/{commentId}")
-    public Class getComment(@PathVariable String commentId) throws ExecutionException, InterruptedException {
+    public BlockComponents getComment(@PathVariable String commentId) throws ExecutionException, InterruptedException {
         return service.getById(commentId, Comment.class, "Comment");
     }
 

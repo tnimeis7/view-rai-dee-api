@@ -3,6 +3,7 @@ package th.ac.ku.viewbackend.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import th.ac.ku.viewbackend.model.ArticleStream;
+import th.ac.ku.viewbackend.model.BlockComponents;
 import th.ac.ku.viewbackend.service.BlockService;
 
 import java.util.List;
@@ -21,12 +22,12 @@ public class ArticleStreamController {
     }
 
     @GetMapping
-    public List<Class> getAllArticleStream() throws ExecutionException, InterruptedException {
+    public List<BlockComponents> getAllArticleStream() throws ExecutionException, InterruptedException {
         return service.getAll(ArticleStream.class, "ArticleStream");
     }
 
     @GetMapping("/{atcStreamId}")
-    public Class getArticleStream(@PathVariable String atcStreamId) throws ExecutionException, InterruptedException {
+    public BlockComponents getArticleStream(@PathVariable String atcStreamId) throws ExecutionException, InterruptedException {
         return service.getById(atcStreamId, ArticleStream.class, "ArticleStream");
     }
 

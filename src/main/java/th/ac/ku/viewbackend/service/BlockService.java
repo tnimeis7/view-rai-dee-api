@@ -24,15 +24,15 @@ public class BlockService {
         return collectionApiFuture.get().getUpdateTime().toString();
     }
 
-    public Class getById(String Id, Class objectClass,String collectionName) throws ExecutionException, InterruptedException{
+    public BlockComponents getById(String Id, Class objectClass, String collectionName) throws ExecutionException, InterruptedException{
 
         Firestore dbFirestore = FirestoreClient.getFirestore();
         DocumentReference documentReferences = dbFirestore.collection(collectionName).document(Id);
         ApiFuture<DocumentSnapshot> future = documentReferences.get();
         DocumentSnapshot documentSnapshot = future.get();
-        Class object;
+        BlockComponents object;
         if(documentSnapshot.exists()){
-            object = (Class) documentSnapshot.toObject(objectClass);
+            object = (BlockComponents) documentSnapshot.toObject(objectClass);
             return object;
         }
         else{
@@ -40,18 +40,18 @@ public class BlockService {
         }
     }
 
-    public List<Class> getAll(Class objectClass,String collectionName) throws ExecutionException, InterruptedException{
+    public List<BlockComponents> getAll(Class objectClass,String collectionName) throws ExecutionException, InterruptedException{
 
         Firestore dbFirestore = FirestoreClient.getFirestore();
         Iterable<DocumentReference> documentReferences = dbFirestore.collection(collectionName).listDocuments();
         Iterator<DocumentReference> iterator = documentReferences.iterator();
-        List<Class> classList = new ArrayList<>();
-        Class object;
+        List<BlockComponents> classList = new ArrayList<>();
+        BlockComponents object;
         while(iterator.hasNext()){
             DocumentReference documentReference = iterator.next();
             ApiFuture<DocumentSnapshot> future = documentReference.get();
             DocumentSnapshot documentSnapshot = future.get();
-            object = (Class) documentSnapshot.toObject(objectClass);
+            object = (BlockComponents) documentSnapshot.toObject(objectClass);
             classList.add(object);
         }
         return classList;

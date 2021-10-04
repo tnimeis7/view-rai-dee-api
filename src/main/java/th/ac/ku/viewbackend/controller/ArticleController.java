@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import th.ac.ku.viewbackend.model.Account;
 import th.ac.ku.viewbackend.model.Article;
+import th.ac.ku.viewbackend.model.BlockComponents;
 import th.ac.ku.viewbackend.service.BlockService;
 
 import java.util.List;
@@ -22,12 +23,12 @@ public class ArticleController {
     }
 
     @GetMapping
-    public List<Class> getAllArticle() throws ExecutionException, InterruptedException {
+    public List<BlockComponents> getAllArticle() throws ExecutionException, InterruptedException {
         return service.getAll(Article.class, "Article");
     }
 
     @GetMapping("/{atcId}")
-    public Class getArticle(@PathVariable String atcId) throws ExecutionException, InterruptedException {
+    public BlockComponents getArticle(@PathVariable String atcId) throws ExecutionException, InterruptedException {
         return service.getById(atcId, Account.class, "Article");
     }
 

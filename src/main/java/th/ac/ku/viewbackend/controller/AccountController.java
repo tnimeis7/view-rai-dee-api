@@ -3,6 +3,7 @@ package th.ac.ku.viewbackend.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import th.ac.ku.viewbackend.model.Account;
+import th.ac.ku.viewbackend.model.BlockComponents;
 import th.ac.ku.viewbackend.service.BlockService;
 
 import java.util.List;
@@ -21,12 +22,12 @@ public class AccountController {
     }
 
     @GetMapping
-    public List<Class> getAllAccount() throws ExecutionException, InterruptedException {
+    public List<BlockComponents> getAllAccount() throws ExecutionException, InterruptedException {
         return service.getAll(Account.class, "Account");
     }
 
     @GetMapping("/{username}")
-    public Class getAccount(@PathVariable String username) throws ExecutionException, InterruptedException {
+    public BlockComponents getAccount(@PathVariable String username) throws ExecutionException, InterruptedException {
         return service.getById(username, Account.class, "Account");
     }
 

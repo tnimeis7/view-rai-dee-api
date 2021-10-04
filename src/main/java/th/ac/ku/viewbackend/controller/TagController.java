@@ -3,6 +3,7 @@ package th.ac.ku.viewbackend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import th.ac.ku.viewbackend.model.BlockComponents;
 import th.ac.ku.viewbackend.model.StreamingPlatform;
 import th.ac.ku.viewbackend.model.Tag;
 import th.ac.ku.viewbackend.service.BlockService;
@@ -23,12 +24,12 @@ public class TagController {
     }
 
     @GetMapping
-    public List<Class> getAllTag() throws ExecutionException, InterruptedException {
+    public List<BlockComponents> getAllTag() throws ExecutionException, InterruptedException {
         return service.getAll(Tag.class, "Tag");
     }
 
     @GetMapping("/{tagId}")
-    public Class getTag(@PathVariable String tagId) throws ExecutionException, InterruptedException {
+    public BlockComponents getTag(@PathVariable String tagId) throws ExecutionException, InterruptedException {
         return service.getById(tagId, Tag.class, "Tag");
     }
 

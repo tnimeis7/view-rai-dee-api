@@ -3,6 +3,7 @@ package th.ac.ku.viewbackend.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import th.ac.ku.viewbackend.model.Account;
+import th.ac.ku.viewbackend.model.BlockComponents;
 import th.ac.ku.viewbackend.model.Comment;
 import th.ac.ku.viewbackend.model.Feedback;
 import th.ac.ku.viewbackend.service.BlockService;
@@ -23,12 +24,12 @@ public class FeedbackController {
     }
 
     @GetMapping
-    public List<Class> getAllFeedback() throws ExecutionException, InterruptedException {
+    public List<BlockComponents> getAllFeedback() throws ExecutionException, InterruptedException {
         return service.getAll(Feedback.class, "Feedback");
     }
 
     @GetMapping("/{fbId}")
-    public Class getFeedback(@PathVariable String fbId) throws ExecutionException, InterruptedException {
+    public BlockComponents getFeedback(@PathVariable String fbId) throws ExecutionException, InterruptedException {
         return service.getById(fbId, Feedback.class, "Feedback");
     }
 

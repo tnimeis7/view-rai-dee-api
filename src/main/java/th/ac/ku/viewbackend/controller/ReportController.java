@@ -3,6 +3,7 @@ package th.ac.ku.viewbackend.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import th.ac.ku.viewbackend.model.Account;
+import th.ac.ku.viewbackend.model.BlockComponents;
 import th.ac.ku.viewbackend.model.Report;
 import th.ac.ku.viewbackend.service.BlockService;
 
@@ -22,12 +23,12 @@ public class ReportController {
     }
 
     @GetMapping
-    public List<Class> getAllReport() throws ExecutionException, InterruptedException {
+    public List<BlockComponents> getAllReport() throws ExecutionException, InterruptedException {
         return service.getAll(Report.class, "Report");
     }
 
     @GetMapping("/{reportId}")
-    public Class getReport(@PathVariable String reportId) throws ExecutionException, InterruptedException {
+    public BlockComponents getReport(@PathVariable String reportId) throws ExecutionException, InterruptedException {
         return service.getById(reportId, Report.class, "Report");
     }
 

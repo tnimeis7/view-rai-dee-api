@@ -2,6 +2,7 @@ package th.ac.ku.viewbackend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import th.ac.ku.viewbackend.model.BlockComponents;
 import th.ac.ku.viewbackend.model.Feedback;
 import th.ac.ku.viewbackend.model.Genre;
 import th.ac.ku.viewbackend.service.BlockService;
@@ -22,12 +23,12 @@ public class GenreController {
     }
 
     @GetMapping
-    public List<Class> getAllGenre() throws ExecutionException, InterruptedException {
+    public List<BlockComponents> getAllGenre() throws ExecutionException, InterruptedException {
         return service.getAll(Genre.class, "Genre");
     }
 
     @GetMapping("/{genreId}")
-    public Class getGenre(@PathVariable String genreId) throws ExecutionException, InterruptedException {
+    public BlockComponents getGenre(@PathVariable String genreId) throws ExecutionException, InterruptedException {
         return service.getById(genreId, Genre.class, "Genre");
     }
 
