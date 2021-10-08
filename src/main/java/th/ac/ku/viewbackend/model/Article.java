@@ -2,6 +2,7 @@ package th.ac.ku.viewbackend.model;
 
 import com.google.cloud.Timestamp;
 
+
 public class Article implements BlockComponents{
 
     private String atcId;
@@ -95,9 +96,7 @@ public class Article implements BlockComponents{
         this.starRate = starRate;
     }
 
-    public Timestamp getPublishDate() {
-        return publishDate;
-    }
+    public String getPublishDate() { return publishDate.toDate().toString();}
 
     public void setPublishDate(Timestamp timestamp) { this.publishDate = timestamp; }
 
