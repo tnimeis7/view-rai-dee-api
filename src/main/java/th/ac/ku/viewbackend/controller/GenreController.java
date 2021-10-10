@@ -18,7 +18,7 @@ public class GenreController {
     private BlockService service;
 
     @PostMapping
-    public String saveGenre(@RequestBody Genre genre) throws ExecutionException, InterruptedException {
+    public BlockComponents saveGenre(@RequestBody Genre genre) throws ExecutionException, InterruptedException {
         return service.save(genre, "Genre");
     }
 

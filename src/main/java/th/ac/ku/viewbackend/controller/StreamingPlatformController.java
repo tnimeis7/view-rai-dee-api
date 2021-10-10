@@ -19,7 +19,7 @@ public class StreamingPlatformController {
     private BlockService service;
 
     @PostMapping
-    public String saveStreamingPlatform(@RequestBody StreamingPlatform streamingPlatform) throws ExecutionException, InterruptedException {
+    public BlockComponents saveStreamingPlatform(@RequestBody StreamingPlatform streamingPlatform) throws ExecutionException, InterruptedException {
         return service.save(streamingPlatform, "StreamingPlatform");
     }
 
@@ -34,7 +34,7 @@ public class StreamingPlatformController {
     }
 
     @PutMapping("/{platformName}")
-    public String updateStreamingPlatform(@RequestBody StreamingPlatform streamingPlatform) throws ExecutionException, InterruptedException {
+    public BlockComponents updateStreamingPlatform(@RequestBody StreamingPlatform streamingPlatform) throws ExecutionException, InterruptedException {
         return service.update(streamingPlatform, "StreamingPlatform");
     }
 

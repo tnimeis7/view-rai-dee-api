@@ -18,7 +18,7 @@ public class ReportController {
     private BlockService service;
 
     @PostMapping
-    public String saveReport(@RequestBody Report report) throws ExecutionException, InterruptedException {
+    public BlockComponents saveReport(@RequestBody Report report) throws ExecutionException, InterruptedException {
         return service.save(report, "Report");
     }
 

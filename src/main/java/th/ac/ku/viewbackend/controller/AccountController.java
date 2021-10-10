@@ -17,8 +17,8 @@ public class AccountController {
     private BlockService service;
 
     @PostMapping
-    public String saveAccount(@RequestBody Account user) throws ExecutionException, InterruptedException {
-        return service.save(user, "Account");
+    public BlockComponents saveAccount(@RequestBody Account account) throws ExecutionException, InterruptedException {
+        return service.save(account, "Account");
     }
 
     @GetMapping
@@ -32,8 +32,8 @@ public class AccountController {
     }
 
     @PutMapping("/{username}")
-    public String updateAccount(@RequestBody Account user) throws ExecutionException, InterruptedException {
-        return service.update(user, "Account");
+    public BlockComponents updateAccount(@RequestBody Account account) throws ExecutionException, InterruptedException {
+        return service.update(account, "Account");
     }
 
     @DeleteMapping("/{username}")

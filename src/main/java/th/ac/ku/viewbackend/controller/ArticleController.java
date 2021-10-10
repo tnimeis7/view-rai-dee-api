@@ -18,7 +18,7 @@ public class ArticleController {
     private BlockService service;
 
     @PostMapping
-    public String saveArticle(@RequestBody Article article) throws ExecutionException, InterruptedException {
+    public BlockComponents saveArticle(@RequestBody Article article) throws ExecutionException, InterruptedException {
         return service.save(article, "Article");
     }
 

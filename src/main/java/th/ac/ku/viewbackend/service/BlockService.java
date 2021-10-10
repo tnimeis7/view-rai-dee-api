@@ -17,11 +17,11 @@ import java.util.concurrent.ExecutionException;
 @Service
 public class BlockService {
 
-    public String save(BlockComponents objectClass,String collectionName) throws ExecutionException, InterruptedException{
+    public BlockComponents save(BlockComponents objectClass,String collectionName) throws ExecutionException, InterruptedException{
 
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(collectionName).document(objectClass.getId()).set(objectClass);
-        return collectionApiFuture.get().getUpdateTime().toString();
+        return objectClass;
     }
 
     public BlockComponents getById(String Id, Class objectClass, String collectionName) throws ExecutionException, InterruptedException{
@@ -57,11 +57,11 @@ public class BlockService {
         return classList;
     }
 
-    public String update(BlockComponents objectClass,String collectionName) throws ExecutionException, InterruptedException{
+    public BlockComponents update(BlockComponents objectClass,String collectionName) throws ExecutionException, InterruptedException{
 
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(collectionName).document(objectClass.getId()).set(objectClass);
-        return collectionApiFuture.get().getUpdateTime().toString();
+        return objectClass;
     }
 
     public String delete(String commentID, String collectionName) throws ExecutionException, InterruptedException{

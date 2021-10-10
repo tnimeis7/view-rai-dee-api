@@ -19,7 +19,7 @@ public class CommentController {
     private BlockService service;
 
     @PostMapping
-    public String saveComment(@RequestBody Comment comment) throws ExecutionException, InterruptedException {
+    public BlockComponents saveComment(@RequestBody Comment comment) throws ExecutionException, InterruptedException {
         return service.save(comment, "Comment");
     }
 

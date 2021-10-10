@@ -19,7 +19,7 @@ public class TagController {
     private BlockService service;
 
     @PostMapping
-    public String saveTag(@RequestBody Tag tag) throws ExecutionException, InterruptedException {
+    public BlockComponents saveTag(@RequestBody Tag tag) throws ExecutionException, InterruptedException {
         return service.save(tag, "Tag");
     }
 

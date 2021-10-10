@@ -17,7 +17,7 @@ public class ArticleStreamController {
     private BlockService service;
 
     @PostMapping
-    public String saveArticleStream(@RequestBody ArticleStream articleStream) throws ExecutionException, InterruptedException {
+    public BlockComponents saveArticleStream(@RequestBody ArticleStream articleStream) throws ExecutionException, InterruptedException {
         return service.save(articleStream, "ArticleStream");
     }
 

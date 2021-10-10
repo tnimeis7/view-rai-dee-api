@@ -19,7 +19,7 @@ public class FeedbackController {
     private BlockService service;
 
     @PostMapping
-    public String saveFeedback(@RequestBody Feedback feedback) throws ExecutionException, InterruptedException {
+    public BlockComponents saveFeedback(@RequestBody Feedback feedback) throws ExecutionException, InterruptedException {
         return service.save(feedback, "Feedback");
     }
 
@@ -34,7 +34,7 @@ public class FeedbackController {
     }
 
     @PutMapping("/{fbId}")
-    public String updateFeedback(@RequestBody Feedback feedback) throws ExecutionException, InterruptedException {
+    public BlockComponents updateFeedback(@RequestBody Feedback feedback) throws ExecutionException, InterruptedException {
         return service.update(feedback, "Feedback");
     }
 
