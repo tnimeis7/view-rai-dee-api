@@ -64,10 +64,9 @@ public class BlockService {
         return objectClass;
     }
 
-    public String delete(String commentID, String collectionName) throws ExecutionException, InterruptedException{
-
+    public String delete(String id, String collectionName) throws ExecutionException, InterruptedException{
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(collectionName).document(commentID).delete();
-        return "delete" + commentID + "successfully";
+        ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(collectionName).document(id).delete();
+        return "delete " + id + " successfully";
     }
 }

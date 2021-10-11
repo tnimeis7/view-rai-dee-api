@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import th.ac.ku.viewbackend.model.Account;
 import th.ac.ku.viewbackend.model.BlockComponents;
+import th.ac.ku.viewbackend.service.AccountService;
 import th.ac.ku.viewbackend.service.BlockService;
 
 import java.util.List;
@@ -14,30 +15,35 @@ import java.util.concurrent.ExecutionException;
 public class AccountController {
 
     @Autowired
-    private BlockService service;
+    private AccountService service;
 
     @PostMapping
     public BlockComponents saveAccount(@RequestBody Account account) throws ExecutionException, InterruptedException {
-        return service.save(account, "Account");
+        return service.save(account);
     }
 
     @GetMapping
     public List<BlockComponents> getAllAccount() throws ExecutionException, InterruptedException {
-        return service.getAll(Account.class, "Account");
+        return service.getAll();
     }
 
-    @GetMapping("/{username}")
+    @GetMapping("/id/{username}")
     public BlockComponents getAccount(@PathVariable String username) throws ExecutionException, InterruptedException {
-        return service.getById(username, Account.class, "Account");
+        return service.getById(username);
+    }
+
+    @GetMapping("/email/{email}")
+    public BlockComponents getAccountByEmail(@PathVariable String email) throws ExecutionException, InterruptedException {
+        return service.getByEmail(email);
     }
 
     @PutMapping("/{username}")
     public BlockComponents updateAccount(@RequestBody Account account) throws ExecutionException, InterruptedException {
-        return service.update(account, "Account");
+        return service.update(account);
     }
 
     @DeleteMapping("/{username}")
     public String deleteAccount(@PathVariable String username) throws ExecutionException, InterruptedException {
-        return service.delete(username, "Account");
+        return service.delete(username);
     }
 }
