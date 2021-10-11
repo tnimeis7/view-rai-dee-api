@@ -39,17 +39,12 @@ public class AccountService {
     }
     public BlockComponents getByEmail(String email) throws ExecutionException, InterruptedException{
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        CollectionReference cities = dbFirestore.collection("Account");
-        Query query = cities.whereEqualTo("email", email);
-        ApiFuture<QuerySnapshot> future = query.get();
-        DocumentSnapshot documentSnapshot = (DocumentSnapshot) future.get().getDocuments();
-        BlockComponents object;
-        if(documentSnapshot.exists()){
-            object = (BlockComponents) documentSnapshot.toObject(Account.class);
-            return object;
+        ApiFuture<QuerySnapshot> future = dbFirestore.collection("Account").whereEqualTo("email", email).get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        BlockComponents blockComponents = null ;
+        for (DocumentSnapshot document : documents) {
+            blockComponents = blockService.getById(document.getId(), Account.class, "Account");
         }
-        else{
-            return null;
-        }
+        return blockComponents;
     }
 }
