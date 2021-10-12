@@ -2,15 +2,16 @@ package th.ac.ku.viewbackend.model;
 
 public class StreamingPlatform implements BlockComponents {
 
-    private String platformName;
+    private String id; //PlatformName
     private String picPath;
 
-    public String getPlatformName() {
-        return platformName;
+    @Override
+    public String getId() {
+        return id;
     }
 
-    public void setPlatformName(String platformName) {
-        this.platformName = platformName;
+    public void setId(String platformName) {
+        this.id = platformName;
     }
 
     public String getPicPath() {
@@ -21,8 +22,5 @@ public class StreamingPlatform implements BlockComponents {
         this.picPath = picPath;
     }
 
-    @Override
-    public String getId() {
-        return getPlatformName();
-    }
+
 }

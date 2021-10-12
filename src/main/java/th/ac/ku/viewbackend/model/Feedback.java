@@ -2,17 +2,18 @@ package th.ac.ku.viewbackend.model;
 
 public class Feedback implements BlockComponents {
 
-    private String fbId;
+    private String id;
     private String fbContent;
     private String fbBy;
     private String fbStatus;
 
-    public String getFbId() {
-        return fbId;
+    @Override
+    public String getId() {
+        return id;
     }
 
-    public void setFbId(String fbId) {
-        this.fbId = fbId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFbContent() {
@@ -39,8 +40,5 @@ public class Feedback implements BlockComponents {
         this.fbStatus = fbStatus;
     }
 
-    @Override
-    public String getId() {
-        return getFbId();
-    }
+
 }

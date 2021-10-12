@@ -3,19 +3,20 @@ package th.ac.ku.viewbackend.model;
 import com.google.cloud.Timestamp;
 
 public class Report implements BlockComponents{
-    private String reportId;
+    private String id;
     private String reportContent;
     private String atcId;
     private String reportBy;
     private String commentId;
     private Timestamp reportDate;
 
-    public String getReportId() {
-        return reportId;
+    @Override
+    public String getId() {
+        return id;
     }
 
-    public void setReportId(String reportId) {
-        this.reportId = reportId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getReportContent() {
@@ -58,8 +59,5 @@ public class Report implements BlockComponents{
         this.reportDate = reportDate;
     }
 
-    @Override
-    public String getId() {
-        return getReportId();
-    }
+
 }

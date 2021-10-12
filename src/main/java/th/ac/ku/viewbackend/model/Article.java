@@ -4,7 +4,7 @@ import com.google.cloud.Timestamp;
 
 public class Article implements BlockComponents{
 
-    private String atcId;
+    private String id;
 
     private String atcName;
     private String movieName;
@@ -17,11 +17,11 @@ public class Article implements BlockComponents{
     private double starRate;
     private Timestamp publishDate;
 
-    public String getAtcId() {
-        return atcId;
+    @Override
+    public String getId() {
+        return id;
     }
-
-    public void setAtcId(String atcId) { this.atcId = atcId; }
+    public void setId(String id) { this.id = id; }
 
     public String getAtcName() {
         return atcName;
@@ -101,8 +101,5 @@ public class Article implements BlockComponents{
 
     public void setPublishDate(Timestamp timestamp) { this.publishDate = timestamp; }
 
-    @Override
-    public String getId() {
-        return getAtcId();
-    }
+
 }
