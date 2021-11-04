@@ -69,4 +69,5 @@ public class BlockService {
         ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(collectionName).document(id).delete();
         return "delete " + id + " successfully";
     }
+
 }

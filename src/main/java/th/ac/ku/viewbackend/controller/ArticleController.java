@@ -1,8 +1,8 @@
 package th.ac.ku.viewbackend.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import th.ac.ku.viewbackend.model.Account;
 import th.ac.ku.viewbackend.model.Article;
 import th.ac.ku.viewbackend.model.BlockComponents;
 import th.ac.ku.viewbackend.service.BlockService;
@@ -29,8 +29,9 @@ public class ArticleController {
 
     @GetMapping("/{atcId}")
     public BlockComponents getArticle(@PathVariable String atcId) throws ExecutionException, InterruptedException {
-        return service.getById(atcId, Account.class, "Article");
+        return service.getById(atcId, Article.class, "Article");
     }
+
 
     @DeleteMapping("/{atcId}")
     public String deleteArticle(@PathVariable String atcId) throws ExecutionException, InterruptedException {
