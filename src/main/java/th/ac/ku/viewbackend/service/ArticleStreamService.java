@@ -33,15 +33,6 @@ public class ArticleStreamService {
             i++;
         }
         return result;
-
     }
-
-//    public List<BlockComponents> getPfByName(List<BlockComponents> blockComponents) throws ExecutionException, InterruptedException{
-//        Firestore dbFirestore = FirestoreClient.getFirestore();
-//        for(int i=0;i<blockComponents.size();i++){
-//            blockService.getById(blockComponents.get(i).getId(), StreamingPlatform.class, "StreamingPlatform");
-//        }
-//    }
-
 
 }

@@ -7,6 +7,7 @@ import th.ac.ku.viewbackend.model.BlockComponents;
 import th.ac.ku.viewbackend.model.StreamingPlatform;
 import th.ac.ku.viewbackend.model.Tag;
 import th.ac.ku.viewbackend.service.BlockService;
+import th.ac.ku.viewbackend.service.TagService;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -17,6 +18,9 @@ public class TagController {
 
     @Autowired
     private BlockService service;
+
+    @Autowired
+    private TagService tagService;
 
     @PostMapping
     public BlockComponents saveTag(@RequestBody Tag tag) throws ExecutionException, InterruptedException {
@@ -36,6 +40,11 @@ public class TagController {
     @DeleteMapping("/{tagId}")
     public String deleteTag(@PathVariable String tagId) throws ExecutionException, InterruptedException {
         return service.delete(tagId, "Tag");
+    }
+
+    @GetMapping("/{atcId}/tag")
+    public List<BlockComponents> getTagsByAtcId(@PathVariable String atcId) throws ExecutionException, InterruptedException{
+        return tagService.getTagsByAtcId(atcId);
     }
 
 }
