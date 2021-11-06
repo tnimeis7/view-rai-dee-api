@@ -20,6 +20,7 @@ public class CommentController {
 
     @PostMapping
     public BlockComponents saveComment(@RequestBody Comment comment) throws ExecutionException, InterruptedException {
+        comment.setCommentDate();
         return service.save(comment, "Comment");
     }
 

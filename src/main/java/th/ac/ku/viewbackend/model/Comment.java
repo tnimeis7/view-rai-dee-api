@@ -2,6 +2,8 @@ package th.ac.ku.viewbackend.model;
 
 import com.google.cloud.Timestamp;
 
+import java.util.Date;
+
 public class Comment implements BlockComponents{
     private String id;
     private String articleId;
@@ -33,12 +35,16 @@ public class Comment implements BlockComponents{
         this.commentContent = commentContent;
     }
 
-    public Timestamp getCommentDate() {
-        return commentDate;
+    public Date getCommentDate() {
+        if(commentDate==null){
+            return null;
+        }
+        return commentDate.toDate();
     }
 
-    public void setCommentDate(Timestamp commentDate) {
-        this.commentDate = commentDate;
+    public void setCommentDate() {
+        Timestamp timestamp = Timestamp.now();
+        this.commentDate =  timestamp;
     }
 
 

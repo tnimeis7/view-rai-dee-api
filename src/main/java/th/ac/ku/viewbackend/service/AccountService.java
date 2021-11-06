@@ -37,6 +37,7 @@ public class AccountService {
     public String delete(String id) throws ExecutionException, InterruptedException{
         return blockService.delete(id, "Account");
     }
+
     public BlockComponents getByEmail(String email) throws ExecutionException, InterruptedException{
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<QuerySnapshot> future = dbFirestore.collection("Account").whereEqualTo("email", email).get();
