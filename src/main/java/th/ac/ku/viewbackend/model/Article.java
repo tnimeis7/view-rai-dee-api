@@ -103,5 +103,4 @@ public class Article implements BlockComponents{
 
     public void setPublishDate(Timestamp timestamp) { this.publishDate = timestamp; }
 
-
 }
