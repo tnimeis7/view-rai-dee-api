@@ -9,6 +9,7 @@ public class Comment implements BlockComponents{
     private String articleId;
     private String commentContent;
     private Timestamp commentDate;
+    private String username;
 
     @Override
     public String getId() {
@@ -47,5 +48,11 @@ public class Comment implements BlockComponents{
         this.commentDate =  timestamp;
     }
 
+    public String getUsername() {
+        return username;
+    }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }

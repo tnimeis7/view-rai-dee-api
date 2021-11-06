@@ -7,6 +7,7 @@ import th.ac.ku.viewbackend.model.Account;
 import th.ac.ku.viewbackend.model.BlockComponents;
 import th.ac.ku.viewbackend.model.Comment;
 import th.ac.ku.viewbackend.service.BlockService;
+import th.ac.ku.viewbackend.service.CommentService;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -16,27 +17,34 @@ import java.util.concurrent.ExecutionException;
 public class CommentController {
 
     @Autowired
-    private BlockService service;
+    private CommentService commentService;
 
     @PostMapping
     public BlockComponents saveComment(@RequestBody Comment comment) throws ExecutionException, InterruptedException {
         comment.setCommentDate();
-        return service.save(comment, "Comment");
+        return commentService.save(comment);
     }
 
     @GetMapping
     public List<BlockComponents> getAllComment() throws ExecutionException, InterruptedException {
-        return service.getAll(Comment.class, "Comment");
+        return commentService.getAll();
     }
 
     @GetMapping("/{commentId}")
     public BlockComponents getComment(@PathVariable String commentId) throws ExecutionException, InterruptedException {
-        return service.getById(commentId, Comment.class, "Comment");
+        return commentService.getById(commentId);
+    }
+
+    @GetMapping("/articleId/{articleId}")
+    public List<BlockComponents> getCommentByArticleId(@PathVariable String articleId) throws ExecutionException, InterruptedException {
+        return commentService.getCommentByAtcId(articleId);
     }
 
     @DeleteMapping("/{commentId}")
     public String deleteComment(@PathVariable String commentId) throws ExecutionException, InterruptedException {
-        return service.delete(commentId, "Comment");
+        return commentService.delete(commentId);
     }
+
+
 
 }
