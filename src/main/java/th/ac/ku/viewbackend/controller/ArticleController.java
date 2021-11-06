@@ -1,6 +1,7 @@
 package th.ac.ku.viewbackend.controller;
 
 
+import com.google.cloud.Timestamp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import th.ac.ku.viewbackend.model.Article;
@@ -36,6 +37,12 @@ public class ArticleController {
         return service.getById(atcId, Article.class, "Article");
     }
 
+    @PostMapping("/heart/{atcId}")
+    public BlockComponents plusHeart(@RequestBody String atcId) throws ExecutionException, InterruptedException {
+        Article article = (Article) getArticle(atcId);
+        article.setHeart(article.getHeart()+1);
+        return service.update(article, "Article");
+    }
 
     @DeleteMapping("/{atcId}")
     public String deleteArticle(@PathVariable String atcId) throws ExecutionException, InterruptedException {
