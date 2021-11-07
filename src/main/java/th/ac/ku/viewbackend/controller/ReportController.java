@@ -19,6 +19,7 @@ public class ReportController {
 
     @PostMapping
     public BlockComponents saveReport(@RequestBody Report report) throws ExecutionException, InterruptedException {
+        report.setReportDate();
         return service.save(report, "Report");
     }
 
