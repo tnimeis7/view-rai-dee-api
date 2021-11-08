@@ -10,8 +10,8 @@ public class StreamingPlatform implements BlockComponents {
         return id;
     }
 
-    public void setId(String platformName) {
-        this.id = platformName;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getPicPath() {

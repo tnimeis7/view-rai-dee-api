@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import th.ac.ku.viewbackend.model.ArticleStream;
 import th.ac.ku.viewbackend.model.BlockComponents;
+import th.ac.ku.viewbackend.model.Genre;
 import th.ac.ku.viewbackend.model.StreamingPlatform;
 
 import java.util.ArrayList;
@@ -35,4 +36,14 @@ public class ArticleStreamService {
         return result;
     }
 
+    public List<String> getAtcIdByPfName(String pfName) throws ExecutionException, InterruptedException {
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> future = dbFirestore.collection("ArticleStream").whereEqualTo("platform", pfName).get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        List<String> atcId = new ArrayList<>();
+        for (DocumentSnapshot document : documents) {
+            atcId.add(document.toObject(Genre.class).getAtcId());
+        }
+        return atcId;
+    }
 }

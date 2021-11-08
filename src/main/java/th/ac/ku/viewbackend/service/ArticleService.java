@@ -30,7 +30,7 @@ public class ArticleService {
         }
         return mostHeart;
     }
-    
+
     public List<Article> getPopularArticlesByType(String type) throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<QuerySnapshot> future = dbFirestore.collection("Article").whereEqualTo("type", type).get();

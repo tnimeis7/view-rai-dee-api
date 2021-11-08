@@ -45,4 +45,9 @@ public class ArticleStreamController {
         return articleStreamService.getNamePfByAtcId(atcId);
     }
 
+    @GetMapping("/{platform}/article")
+    public List<String> getAtcIdByPf(@PathVariable String platform) throws ExecutionException, InterruptedException{
+        return articleStreamService.getAtcIdByPfName(platform);
+    }
+
 }
