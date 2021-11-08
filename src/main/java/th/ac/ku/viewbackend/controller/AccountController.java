@@ -3,6 +3,7 @@ package th.ac.ku.viewbackend.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import th.ac.ku.viewbackend.model.Account;
+import th.ac.ku.viewbackend.model.Article;
 import th.ac.ku.viewbackend.model.BlockComponents;
 import th.ac.ku.viewbackend.service.AccountService;
 import th.ac.ku.viewbackend.service.BlockService;
@@ -39,6 +40,13 @@ public class AccountController {
 
     @PutMapping("/{username}")
     public BlockComponents updateAccount(@RequestBody Account account) throws ExecutionException, InterruptedException {
+        return service.update(account);
+    }
+
+    @PostMapping("/heart/{username}")
+    public BlockComponents plusHeartUser(@RequestBody String username) throws ExecutionException, InterruptedException {
+        Account account = (Account) getAccount(username);
+        account.setCountHeart(account.getCountHeart()+1);
         return service.update(account);
     }
 
