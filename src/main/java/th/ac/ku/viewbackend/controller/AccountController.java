@@ -46,4 +46,9 @@ public class AccountController {
     public String deleteAccount(@PathVariable String username) throws ExecutionException, InterruptedException {
         return service.delete(username);
     }
+
+    @GetMapping("/most-popular-account")
+    public List<BlockComponents> getPopularAccount() throws ExecutionException, InterruptedException{
+        return service.getPopularAccounts();
+    }
 }

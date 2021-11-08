@@ -47,4 +47,9 @@ public class ArticleController {
         return articleService.getPopularArticles();
     }
 
+    @GetMapping("/MostPopular/{type}")
+    public List<Article> getAllArticlePopularByType(@PathVariable String type) throws ExecutionException, InterruptedException{
+        return articleService.getPopularArticlesByType(type);
+    }
+
 }
