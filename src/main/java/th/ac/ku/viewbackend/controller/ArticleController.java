@@ -37,11 +37,35 @@ public class ArticleController {
         return service.getById(atcId, Article.class, "Article");
     }
 
+    @GetMapping("/author/{name}")
+    public List<BlockComponents> getArticlesByAuthorName(@PathVariable String name) throws ExecutionException, InterruptedException {
+        return articleService.getArticlesByAuthorName(name);
+    }
+
     @PostMapping("/heart/{atcId}")
     public BlockComponents plusHeart(@RequestBody String atcId) throws ExecutionException, InterruptedException {
         Article article = (Article) getArticle(atcId);
         article.setHeart(article.getHeart()+1);
         return service.update(article, "Article");
+    }
+
+    @PostMapping("/setUsername/{username}/{newUsername}")
+    public void setArticleUsername(@PathVariable String username, @PathVariable String newUsername) throws ExecutionException, InterruptedException {
+        List<BlockComponents> article = getArticlesByAuthorName(username);
+        for (BlockComponents var: article) {
+            Article a = (Article) var;
+            a.setAuthorName(newUsername);
+            service.update(a, "Article");
+        }
+    }
+
+    @PostMapping("/delete/{username}")
+    public void deleteArticleByUsername(@PathVariable String username) throws ExecutionException, InterruptedException {
+        List<BlockComponents> article = getArticlesByAuthorName(username);
+        for (BlockComponents var: article) {
+            Article a = (Article) var;
+            deleteArticle(a.getId());
+        }
     }
 
     @DeleteMapping("/{atcId}")

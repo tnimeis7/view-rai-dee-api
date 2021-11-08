@@ -28,5 +28,16 @@ public class ArticleService {
         return mostHeart;
     }
 
+    public List<BlockComponents> getArticlesByAuthorName(String name) throws ExecutionException, InterruptedException {
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> future = dbFirestore.collection("Article").whereEqualTo("authorName", name).get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        List<BlockComponents> mostHeart = new ArrayList<>();
+        for(DocumentSnapshot document: documents) {
+            mostHeart.add(document.toObject(Article.class));
+        }
+        return mostHeart;
+    }
+
 
 }
