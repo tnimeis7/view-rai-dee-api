@@ -36,9 +36,30 @@ public class CommentService {
         return blockService.delete(id, "Comment");
     }
 
+    public BlockComponents update(Comment comment) throws ExecutionException, InterruptedException{
+        return blockService.save(comment , "Comment");
+    }
+
     public List<BlockComponents> getCommentByAtcId(String articleId) throws ExecutionException, InterruptedException{
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<QuerySnapshot> future = dbFirestore.collection("Comment").whereEqualTo("articleId", articleId).get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        List<Comment> blockComponents = new ArrayList<>();
+        List<BlockComponents> result = new ArrayList<>();
+        BlockComponents object = null;
+        int i = 0;
+        for (DocumentSnapshot document : documents){
+            blockComponents.add(document.toObject(Comment.class));
+            object = blockService.getById(blockComponents.get(i).getId(), Comment.class, "Comment");
+            result.add(object);
+            i++;
+        }
+        return result;
+    }
+
+    public List<BlockComponents> getCommentByUsername(String username) throws ExecutionException, InterruptedException{
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> future = dbFirestore.collection("Comment").whereEqualTo("username", username).get();
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
         List<Comment> blockComponents = new ArrayList<>();
         List<BlockComponents> result = new ArrayList<>();

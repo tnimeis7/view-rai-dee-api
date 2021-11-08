@@ -30,7 +30,7 @@ public class ArticleService {
         }
         return mostHeart;
     }
-
+    
     public List<Article> getPopularArticlesByType(String type) throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<QuerySnapshot> future = dbFirestore.collection("Article").whereEqualTo("type", type).get();
@@ -48,6 +48,18 @@ public class ArticleService {
 //        Firestore dbFirestore = FirestoreClient.getFirestore();
 //        ApiFuture<QuerySnapshot> future = dbFirestore.collection("Article").orderBy("publishDate", Query.Direction.DESCENDING)
 //    }
+
+
+    public List<BlockComponents> getArticlesByAuthorName(String name) throws ExecutionException, InterruptedException {
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> future = dbFirestore.collection("Article").whereEqualTo("authorName", name).get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        List<BlockComponents> mostHeart = new ArrayList<>();
+        for(DocumentSnapshot document: documents) {
+            mostHeart.add(document.toObject(Article.class));
+        }
+        return mostHeart;
+    }
 
 
 }
