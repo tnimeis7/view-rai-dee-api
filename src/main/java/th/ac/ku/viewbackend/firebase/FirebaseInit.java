@@ -15,7 +15,7 @@ public class FirebaseInit {
     public void init() {
         FileInputStream serviceAccount = null;
         try {
-            serviceAccount = new FileInputStream("./viewraideeServiceKey.json");
+            serviceAccount = new FileInputStream("./viewraideeproject-firebase-adminsdk-kgc47-0390da833e.json");
 
 
         FirebaseOptions options = new FirebaseOptions.Builder()
