@@ -9,6 +9,7 @@ import th.ac.ku.viewbackend.service.GenreService;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/Genre")
@@ -26,8 +27,8 @@ public class GenreController {
     }
 
     @GetMapping
-    public List<BlockComponents> getAllGenre() throws ExecutionException, InterruptedException {
-        return service.getAll(Genre.class, "Genre");
+    public List<String> getAllGenre() throws ExecutionException, InterruptedException {
+        return genreService.getAllGenreName();
     }
 
     @GetMapping("/{genreId}")
@@ -43,6 +44,11 @@ public class GenreController {
     @GetMapping("/{atcId}/genre")
     public List<BlockComponents> getAllGenreByAtcId(@PathVariable String atcId) throws ExecutionException, InterruptedException{
         return genreService.getGenreByAtcId(atcId);
+    }
+
+    @GetMapping("/{genreName}/article")
+    public List<String> getAtcIdByGenre(@PathVariable String genreName) throws ExecutionException, InterruptedException {
+        return genreService.getAtcIdByGenre(genreName);
     }
 
 }

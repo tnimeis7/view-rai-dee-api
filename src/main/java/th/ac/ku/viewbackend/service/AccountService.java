@@ -48,4 +48,15 @@ public class AccountService {
         }
         return blockComponents;
     }
+
+    public List<BlockComponents> getPopularAccounts() throws ExecutionException, InterruptedException {
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> future = dbFirestore.collection("Account").orderBy("countHeart", Query.Direction.DESCENDING).get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        List<BlockComponents> popularAcc = new ArrayList<>();
+        for (DocumentSnapshot document : documents) {
+            popularAcc.add(document.toObject(Account.class));
+        }
+        return popularAcc;
+    }
 }
