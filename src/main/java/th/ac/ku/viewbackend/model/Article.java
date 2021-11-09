@@ -98,9 +98,15 @@ public class Article implements BlockComponents{
     }
 
     public Date getPublishDate() {
+        if(publishDate == null){
+            return null;
+        }
         return publishDate.toDate();
     }
 
-    public void setPublishDate(Timestamp timestamp) { this.publishDate = timestamp; }
+    public void setPublishDate() {
+        Timestamp timestamp = Timestamp.now();
+        this.publishDate = timestamp;
+    }
 
 }

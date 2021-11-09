@@ -24,6 +24,7 @@ public class ArticleController {
 
     @PostMapping
     public BlockComponents saveArticle(@RequestBody Article article) throws ExecutionException, InterruptedException {
+        article.setPublishDate();
         return service.save(article, "Article");
     }
 
