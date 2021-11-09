@@ -61,5 +61,16 @@ public class ArticleService {
         return mostHeart;
     }
 
+    public List<BlockComponents> getArticlesByType(String type) throws ExecutionException, InterruptedException{
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        ApiFuture<QuerySnapshot> future = dbFirestore.collection("Article").whereEqualTo("type", type).get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        List<BlockComponents> atcByType = new ArrayList<>();
+        for(DocumentSnapshot document: documents) {
+            atcByType.add(document.toObject(Article.class));
+        }
+        return atcByType;
+    }
+
 
 }

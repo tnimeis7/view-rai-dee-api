@@ -83,4 +83,9 @@ public class ArticleController {
         return articleService.getPopularArticlesByType(type);
     }
 
+    @GetMapping("/type/{type}")
+    public List<BlockComponents> getArticlesByType(@PathVariable String type) throws ExecutionException, InterruptedException {
+        return articleService.getArticlesByType(type);
+    }
+
 }
